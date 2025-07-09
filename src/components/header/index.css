@@ -1,0 +1,25 @@
+.arrow-up {
+  animation: arrowUp 0.3s ease-in-out;
+}
+
+.arrow-down {
+  animation: arrowDown 0.3s ease-in-out;
+}
+
+@keyframes arrowUp {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes arrowDown {
+  0% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
