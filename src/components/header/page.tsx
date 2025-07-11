@@ -14,47 +14,17 @@ import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import { Flex, Input } from "antd";
 import "./index.css";
+import Link from "next/link";
+import headerList from "@/app/router/page";
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const [hoverPath, setHoverPath] = useState<string | null>(null);
 
-  const [menuItems, setMenuItems] = useState([
-    {
-      title: "儀表板",
-      url: "/",
-      icon: <DashboardOutlined style={{ color: "white" }} />,
-      description: "總覽與統計",
-    },
-    {
-      title: "商品管理",
-      url: "/products",
-      icon: <CodeSandboxOutlined style={{ color: "white" }} />,
-      description: "商品庫存管理",
-    },
-    {
-      title: "訂單管理",
-      url: "/orders",
-      icon: <FileMarkdownOutlined style={{ color: "white" }} />,
-      description: "訂單處理與追蹤",
-    },
-    {
-      title: "商品設定",
-      url: "/product-settings",
-      icon: <SettingOutlined style={{ color: "white" }} />,
-      description: "分類與規格設定",
-    },
-    {
-      title: "人員管理",
-      url: "/staff",
-      icon: <UserOutlined style={{ color: "white" }} />,
-      description: "員工權限管理",
-    },
-  ]);
 
   return (
-    <div className="h-full mx-auto">
+    <div className="h-full mx-auto bg-white">
       <div className="flex justify-between items-center p-3 space-x-3">
         <div className="flex items-center space-x-2">
           <div className="h-8 w-8 bg-[#031e49] rounded-lg flex items-center justify-center">
@@ -65,17 +35,16 @@ export default function Header() {
           </h1>
 
           <nav className="flex items-center space-x-1">
-            {menuItems.map((item) => {
+            {headerList.map((item) => {
               const isHovered = hoverPath === item.url;
               return (
                 <div
+                  className="relative"
                   key={item.title}
-                  className="bg-linear-to-r from-[#031e49] to-[#06327a] px-4 py-2 rounded-xl flex items-center h-10"
+                  onMouseOver={() => setHoverPath(item.url)}
+                  onMouseLeave={() => setHoverPath(null)}
                 >
-                  <button
-                    onMouseOver={() => setHoverPath(item.url)}
-                    onMouseLeave={() => setHoverPath(null)}
-                  >
+                  <div className="bg-linear-to-r from-[#031e49] to-[#06327a] px-4 py-2 rounded-xl flex items-center h- mb-2">
                     <div className="text-sm  gap-2 flex justify-center items-center cursor-pointer">
                       {item.icon}
                       <span className="ml-2 text-white">{item.title}</span>
@@ -91,7 +60,29 @@ export default function Header() {
                         />
                       )}
                     </div>
-                  </button>
+                  </div>
+
+                  {isHovered ? (
+                    <button className="absolute listCard bg-white duration-200 border border-gray-200 p-1 w-48">
+                      {item.children?.map((child) => {
+                        return (
+                          <div key={child.title}>
+                            <Link href={child.url}>
+                              <div className="flex items-center p-2 gap-2">
+                                <div>{child.icon}</div>
+                                <div className="flex flex-col text-left text-sm ">
+                                  <span>{child.title}</span>
+                                  <span className="text-gray-500">
+                                    {child.description}
+                                  </span>
+                                </div>
+                              </div>
+                            </Link>
+                          </div>
+                        );
+                      })}
+                    </button>
+                  ) : null}
                 </div>
               );
             })}

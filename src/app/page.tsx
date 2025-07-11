@@ -1,15 +1,10 @@
-import Header from "../components/header/page";
-import Main from "../components/main/page";
-import Footer from "../components/footer/page";
-
-export default function Home() {
-  return (
-    <div className="w-full min-h-screen">
-      <div className="h-16">
-        <Header />
-      </div>
-      <Main />
-      <Footer />
-    </div>
-  );
-}
+// interface RouterProps {
+//   children: React.ReactNode;
+// }
+// export default function Home({ children }: RouterProps) {
+//   return (
+//     <div className="min-h-screen flex flex-col w-full bg-[#f5f7f9]">
+//       {/* <div className="flex-1 overflow-auto p-6">{children}</div> */}
+//     </div>
+//   );
+// }

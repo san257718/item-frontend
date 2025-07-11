@@ -1,4 +1,6 @@
+import Header from "@/components/header/page";
 import "./globals.css";
+import Footer from "@/components/footer/page";
 
 export default function RootLayout({
   children,
@@ -8,7 +10,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning>
-        <div>{children}</div>
+        <div>
+          <Header />
+          <div>{children}</div>
+          <Footer />
+        </div>
+        {/* <div>{children}</div> */}
       </body>
     </html>
   );
