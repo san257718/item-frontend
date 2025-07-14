@@ -10,12 +10,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning>
-        <div>
+        <div className="min-h-screen flex flex-col w-full bg-[#f5f7f9]">
           <Header />
-          <div>{children}</div>
+          <div className="flex-1 overflow-auto p-6">{children}</div>
           <Footer />
         </div>
-        {/* <div>{children}</div> */}
       </body>
     </html>
   );

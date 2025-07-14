@@ -24,7 +24,7 @@ export default function Header() {
 
 
   return (
-    <div className="h-full mx-auto bg-white">
+    <div className="h-full sm:px-6 bg-white">
       <div className="flex justify-between items-center p-3 space-x-3">
         <div className="flex items-center space-x-2">
           <div className="h-8 w-8 bg-[#031e49] rounded-lg flex items-center justify-center">

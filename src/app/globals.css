@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@theme {
+  --color-buttonColorFrom: #031e49;
+  --color-buttonColorTo: #06327a;
+  --color-addbuttonColorFrom: #3c83f6;
+  --color-addbuttonColorTo: #6da2f8;
+  --color-text-from: #031e49;
+  --color-text-to: #06327a;
+}
