@@ -21,7 +21,16 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const [hoverPath, setHoverPath] = useState<string | null>(null);
+  const [childHoverPath, setChildHoverPath] = useState<string | null>(null);
+  const [isActive, setIsActive] = useState<boolean>(false);
 
+  const handleClick = (url: string) => {
+    if (url === pathname) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  };
 
   return (
     <div className="h-full sm:px-6 bg-white">
@@ -37,6 +46,9 @@ export default function Header() {
           <nav className="flex items-center space-x-1">
             {headerList.map((item) => {
               const isHovered = hoverPath === item.url;
+              const isActive = item.children?.some(
+                (child) => child.url === pathname
+              );
               return (
                 <div
                   className="relative"
@@ -44,31 +56,61 @@ export default function Header() {
                   onMouseOver={() => setHoverPath(item.url)}
                   onMouseLeave={() => setHoverPath(null)}
                 >
-                  <div className="bg-linear-to-r from-[#031e49] to-[#06327a] px-4 py-2 rounded-xl flex items-center h- mb-2">
+                  <button
+                    className={
+                      isActive || isHovered
+                        ? "bg-linear-to-r from-[#031e49] to-[#06327a] px-4 py-2 rounded-xl flex items-center h- mb-2 "
+                        : "px-4 py-2 flex items-center h- mb-2"
+                    }
+                  >
                     <div className="text-sm  gap-2 flex justify-center items-center cursor-pointer">
                       {item.icon}
-                      <span className="ml-2 text-white">{item.title}</span>
-                      {isHovered ? (
+                      <span
+                        className={
+                          isActive || isHovered
+                            ? "ml-2 text-white"
+                            : "ml-2 text-black"
+                        }
+                      >
+                        {item.title}
+                      </span>
+                      {isActive || isHovered ? (
                         <UpOutlined
                           className="arrow-up"
-                          style={{ color: "white" }}
+                          style={{
+                            color: isActive || isHovered ? "white" : "black",
+                          }}
                         />
                       ) : (
                         <DownOutlined
                           className="arrow-down"
-                          style={{ color: "white" }}
+                          style={{
+                            color: isActive || isHovered ? "white" : "black",
+                          }}
                         />
                       )}
                     </div>
-                  </div>
+                  </button>
 
                   {isHovered ? (
                     <button className="absolute listCard bg-white duration-200 border border-gray-200 p-1 w-48">
                       {item.children?.map((child) => {
+                        const ischildHovered = childHoverPath === child.url;
                         return (
                           <div key={child.title}>
-                            <Link href={child.url}>
-                              <div className="flex items-center p-2 gap-2">
+                            <Link
+                              href={child.url}
+                              onClick={() => handleClick(child.url)}
+                              onMouseOver={() => setChildHoverPath(child.url)}
+                              onMouseLeave={() => setChildHoverPath(null)}
+                            >
+                              <div
+                                className={
+                                  ischildHovered
+                                    ? "flex items-center p-2 gap-2 bg-blue-200 rounded-lg"
+                                    : "flex items-center p-2 gap-2 "
+                                }
+                              >
                                 <div>{child.icon}</div>
                                 <div className="flex flex-col text-left text-sm ">
                                   <span>{child.title}</span>

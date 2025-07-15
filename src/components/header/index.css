@@ -1,9 +1,18 @@
 .arrow-up {
   animation: arrowUp 0.3s ease-in-out;
+  color: '#000000';
+}
+
+.arrow-up:hover {
+  color: '#ffffff';
 }
 
 .arrow-down {
   animation: arrowDown 0.3s ease-in-out;
+  color: '#000000';
+}
+.arrow-down:hover {
+  color: '#ffffff';
 }
 
 .listCard {
