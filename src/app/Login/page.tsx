@@ -2,21 +2,18 @@
 
 import { login } from "@/api/dashboard";
 import { useLayoutStore } from "@/store/layoutStore";
-import { useState } from "react";
 export default function Login() {
-  const [addOpen, setAddOpen] = useState<boolean>(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string>("");
+  // const [addOpen, setAddOpen] = useState<boolean>(false);
+
   const setAuthenticated = useLayoutStore((state) => state.setAuthenticated);
 
-  const handleModalOpen = () => {
-    setAddOpen(true);
-  };
+  // const handleModalOpen = () => {
+  //   setAddOpen(true);
+  // };
 
-  const headleModalClose = () => {
-    setAddOpen(false);
-  };
+  // const headleModalClose = () => {
+  //   setAddOpen(false);
+  // };
 
   const handleLogin = async () => {
     // // 簡單的登入驗證
@@ -90,9 +87,9 @@ export default function Login() {
               <button className="flex-1" onClick={handleLogin}>
                 登入
               </button>
-              <button className="flex-1" onClick={handleModalOpen}>
+              {/* <button className="flex-1" onClick={handleModalOpen}>
                 新增帳號
-              </button>
+              </button> */}
             </div>
 
             <div className="mt-6 p-4 bg-blue-50 rounded-lg">

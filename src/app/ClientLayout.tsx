@@ -1,4 +1,3 @@
-// app/ClientLayout.tsx
 "use client";
 
 import { useLayoutStore } from "@/store/layoutStore";
@@ -23,7 +22,7 @@ export default function ClientLayout({
       {isAuthenticated ? (
         <>
           <Header />
-          <main className="flex-1 overflow-auto p-6">{children}</main>
+          <main className="flex-1 overflow-auto p-6">{children ?? null}</main>
           <Footer />
         </>
       ) : (

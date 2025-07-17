@@ -3,34 +3,31 @@
 import {
   BellOutlined,
   CodeSandboxOutlined,
-  DashboardOutlined,
   DownOutlined,
-  FileMarkdownOutlined,
   SettingOutlined,
   UpOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Flex, Input } from "antd";
+import { Input } from "antd";
 import "./index.css";
 import Link from "next/link";
-import headerList from "@/app/router/page";
+import headerList from "@/router/page";
 
 export default function Header() {
-  const router = useRouter();
   const pathname = usePathname();
   const [hoverPath, setHoverPath] = useState<string | null>(null);
   const [childHoverPath, setChildHoverPath] = useState<string | null>(null);
-  const [isActive, setIsActive] = useState<boolean>(false);
+  // const [isActive, setIsActive] = useState<boolean>(false);
 
-  const handleClick = (url: string) => {
-    if (url === pathname) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
+  // const handleClick = (url: string) => {
+  //   if (url === pathname) {
+  //     setIsActive(true);
+  //   } else {
+  //     setIsActive(false);
+  //   }
+  // };
 
   return (
     <div className="h-full sm:px-6 bg-white">
@@ -100,7 +97,7 @@ export default function Header() {
                           <div key={child.title}>
                             <Link
                               href={child.url}
-                              onClick={() => handleClick(child.url)}
+                              // onClick={() => handleClick(child.url)}
                               onMouseOver={() => setChildHoverPath(child.url)}
                               onMouseLeave={() => setChildHoverPath(null)}
                             >
