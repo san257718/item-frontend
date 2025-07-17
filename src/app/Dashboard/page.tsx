@@ -1,3 +1,5 @@
+'use client'
+
 import {
   CodeSandboxOutlined,
   ExclamationCircleOutlined,
@@ -8,6 +10,8 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import StateHandling from "@/components/state-handling/page";
+import { useEffect } from "react";
+import { getDashboard } from "@/api/dashboard";
 
 export default function Dashboard() {
   const card = [
