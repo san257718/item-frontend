@@ -1,9 +1,7 @@
 "use client";
 
 import { login } from "@/api/dashboard";
-import Header from "@/components/header/page";
 import { useLayoutStore } from "@/store/layoutStore";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 export default function Login() {
   const router = useRouter();
