@@ -24,22 +24,22 @@ export default async function Dashboard() {
       icon: (
         <CodeSandboxOutlined style={{ fontSize: "28px", color: "white" }} />
       ),
-      value: data[0].total_number_of_products,
+      value: data[0].total_number_of_products ?? 0,
     },
     {
       title: "今日編輯數", // Assuming this corresponds to edited_today
       icon: <FileTextOutlined style={{ fontSize: "28px", color: "white" }} />,
-      value: data[0].edited_today,
+      value: data[0].edited_today ?? 0,
     },
     {
       title: "活躍用戶",
       icon: <UserOutlined style={{ fontSize: "28px", color: "white" }} />,
-      value: data[0].active_users,
+      value: data[0].active_users ?? 0,
     },
     {
       title: "待處理訂單",
       icon: <ShoppingOutlined style={{ fontSize: "28px", color: "white" }} />,
-      value: data[0].pending_orders,
+      value: data[0].pending_orders ?? 0,
     },
   ];
 
