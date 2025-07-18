@@ -1,8 +1,12 @@
 "use client";
 
 import { login } from "@/api/dashboard";
+import Header from "@/components/header/page";
 import { useLayoutStore } from "@/store/layoutStore";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 export default function Login() {
+  const router = useRouter();
   // const [addOpen, setAddOpen] = useState<boolean>(false);
 
   const setAuthenticated = useLayoutStore((state) => state.setAuthenticated);
@@ -29,9 +33,8 @@ export default function Login() {
     try {
       const response = await login("admin@ggg.com", "admin");
       localStorage.setItem("token", response.data.token);
-      console.log(document.cookie);
-
       setAuthenticated(true);
+      router.push("/dashboard");
     } catch (error) {
       console.log(error);
     }
@@ -39,6 +42,7 @@ export default function Login() {
 
   return (
     <div className="w-full min-h-full flex justify-center items-center">
+      
       <div className="max-w-md w-full flex justify-center bg-[#fffc] rounded-lg shadow-xl">
         <div className="w-full">
           <div className="flex flex-col text-center space-y-4 p-6">
@@ -90,6 +94,13 @@ export default function Login() {
               {/* <button className="flex-1" onClick={handleModalOpen}>
                 新增帳號
               </button> */}
+              {/* <Link
+                className="flex-1"
+                href={"/dashboard"}
+                onChange={handleLogin}
+              >
+                登入
+              </Link> */}
             </div>
 
             <div className="mt-6 p-4 bg-blue-50 rounded-lg">

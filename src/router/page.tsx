@@ -9,13 +9,13 @@ import {
 const headerList = [
   {
     title: "儀表板",
-    url: "/",
+    url: "/dashboard",
     icon: <DashboardOutlined style={{ color: "white" }} />,
     description: "總覽與統計",
     children: [
       {
         title: "儀錶板",
-        url: "/",
+        url: "/dashboard",
         icon: <CodeSandboxOutlined />,
         description: "總覽與統計",
       },
