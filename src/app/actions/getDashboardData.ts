@@ -2,17 +2,20 @@
 
 export async function getDashboardData() {
   try {
-    const res = await fetch(process.env.NEXT_PROD_API_KEY || "http://localhost:5000");
+    // const res = await fetch(
+    //   "http://localhost:5000/api/total_number_of_products"
+    // );
+
+    const res = await fetch(process.env.NEXT_PROD_API_KEY + "/api/total_number_of_products");
 
     const json = await res.json();
     console.log("✅ dashboard json:", json); // ← 這裡加上
 
     return json;
   } catch (error) {
-    
     console.error("❌ dashboard error:", error); // ← 這裡加上
 
-     return {
+    return {
       _id: "",
       total_number_of_products: 0,
       edited_today: 0,
