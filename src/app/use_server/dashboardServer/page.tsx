@@ -2,9 +2,7 @@
 
 export async function getDashboardData() {
   try {
-    const res = await fetch(
-      "http://localhost:5000/api/total_number_of_products"
-    );
+    const res = await fetch(process.env.NEXT_PROD_API_KEY || "http://localhost:5000");
 
     const json = await res.json();
     console.log("✅ dashboard json:", json); // ← 這裡加上
