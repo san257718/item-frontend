@@ -131,7 +131,7 @@ export default async function Dashboard() {
                       {item.title}
                       {/* Display the value from fetched data */}
                       <div className="text-2xl font-bold mt-2">
-                        {item.value}
+                        {item.value !== 0 ? item.value : "-"}
                       </div>
                     </div>
                     <div className="bg-[#031e49] flex items-center justify-center h-12 w-12 rounded-xl">
