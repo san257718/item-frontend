@@ -1,8 +1,10 @@
 import axios from "axios";
 
-const baseURL = process.env.NEXT_PROD_API_KEY || "http://localhost:5000";
+
+
 export const jsonApi = axios.create({
-  baseURL,
+  // baseURL,
+  baseURL: process.env.NEXT_PUBLIC_API_KEY,
   headers: {
     "Content-Type": "application/json",
   },
@@ -12,9 +14,25 @@ export const jsonApi = axios.create({
 
 jsonApi.interceptors.request.use(
   (config) => {
+    console.log("✅ request config:", config); // ← 這裡加上
+
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    console.log("❌ request error:", error); // ← 這裡加上
+    return Promise.reject(error);
+  }
+);
+
+jsonApi.interceptors.response.use(
+  (response) => {
+    console.log("✅ response:", response); // ← 這裡加上
+    return response;
+  },
+  (error) => {
+    console.log("❌ response error:", error); // ← 這裡加上
+    return Promise.reject(error);
+  }
 );
 
 export default jsonApi;

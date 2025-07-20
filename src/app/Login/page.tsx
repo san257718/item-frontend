@@ -31,6 +31,7 @@ export default function Login() {
     try {
       const response = await login("admin@ggg.com", "admin");
       localStorage.setItem("token", response.data.token);
+      
       setAuthenticated(true);
       router.push("/dashboard");
     } catch (error) {

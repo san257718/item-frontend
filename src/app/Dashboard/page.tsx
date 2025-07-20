@@ -1,3 +1,5 @@
+
+
 import {
   CodeSandboxOutlined,
   ExclamationCircleOutlined,
@@ -11,33 +13,54 @@ import StateHandling from "@/components/state-handling/page";
 import Footer from "@/components/footer/page";
 import Header from "@/components/header/page";
 
-// import { getDashboardData } from "@/app/actions/getDashboardData";
+import { getDashboard } from "@/api/dashboard";
+;
 
 export default async function Dashboard() {
-  // const data = await getDashboardData();
-
+  const data = await getDashboard();
+  // const [data, setData] = useState([
+  //   {
+  //     total_number_of_products: 0,
+  //     edited_today: 0,
+  //     active_users: 0,
+  //     pending_orders: 0,
+  //   },
+  // ]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await getDashboard();
+  //       setData(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+  console.log(data);
+  
   const card = [
     {
       title: "總商品數",
       icon: (
         <CodeSandboxOutlined style={{ fontSize: "28px", color: "white" }} />
       ),
-      // value: data[0].total_number_of_products ?? 0,
+      value: data[0].total_number_of_products,
     },
     {
       title: "今日編輯數", // Assuming this corresponds to edited_today
       icon: <FileTextOutlined style={{ fontSize: "28px", color: "white" }} />,
-      // value: data[0].edited_today ?? 0,
+      value: data[0].edited_today,
     },
     {
       title: "活躍用戶",
       icon: <UserOutlined style={{ fontSize: "28px", color: "white" }} />,
-      // value: data[0].active_users ?? 0,
+      value: data[0].active_users,
     },
     {
       title: "待處理訂單",
       icon: <ShoppingOutlined style={{ fontSize: "28px", color: "white" }} />,
-      // value: data[0].pending_orders ?? 0,
+      value: data[0].pending_orders,
     },
   ];
 
@@ -128,7 +151,7 @@ export default async function Dashboard() {
                     <div>
                       {item.title}
                       <div className="text-2xl font-bold mt-2">
-                        {/* {item.value !== 0 ? item.value : "-"} */}
+                        {item.value !== 0 ? item.value : "-"}
                       </div>
                     </div>
                     <div className="bg-[#031e49] flex items-center justify-center h-12 w-12 rounded-xl">
