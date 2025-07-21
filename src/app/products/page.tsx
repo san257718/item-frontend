@@ -14,10 +14,7 @@ export default async function Products() {
   return (
     <div>
       <div>
-        <div>{data.length === 0 ? "-" : data.map((item: any) => item.edited_today)}</div>
-        <div>{data.length === 0 ? "-" : data.map((item: any) => item.active_users)}</div>
-        <div>{data.length === 0 ? "-" : data.map((item: any) => item.pending_orders)}</div>
-        <div>{data.length === 0 ? "-" : data.map((item: any) => item.total_number_of_products)}</div>
+        123
       </div>
     </div>
   );
