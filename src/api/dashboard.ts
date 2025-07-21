@@ -1,4 +1,4 @@
-import jsonApi from "@/util/utilAxions";
+import jsonApi from "@/app/util/utilAxions";
 
 export const getDashboard = async () => {
   const response = await jsonApi.get("/api/total_number_of_products");

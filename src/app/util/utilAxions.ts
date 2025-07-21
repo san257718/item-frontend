@@ -1,15 +1,17 @@
 // utilAxios.tsx (Simplified for testing)
 import axios from "axios";
 
-
 const jsonApi = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
+    // "Cookie": `${tokenCookie.name}=${tokenCookie.value}`,
   },
   withCredentials: true,
   timeout: 5000,
 });
+
+
 
 // 攔截器保持不變
 jsonApi.interceptors.request.use(

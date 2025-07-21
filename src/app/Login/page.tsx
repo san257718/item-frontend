@@ -2,7 +2,6 @@
 
 import { login } from "@/api/dashboard";
 import { useRouter } from "next/navigation";
-
 export default function Login() {
   const router = useRouter();
   // const [addOpen, setAddOpen] = useState<boolean>(false);
