@@ -11,14 +11,19 @@ export default async function Products() {
     console.log(error);
   }
 
-
-  
-
   return (
     <div>
       <div>
-        {data.length > 0 ? (
-          data.map((item: { total_number_of_products: number; edited_today: number; active_users: number; pending_orders: number; }, index: number) => {
+        {data.map(
+          (
+            item: {
+              total_number_of_products: number;
+              edited_today: number;
+              active_users: number;
+              pending_orders: number;
+            },
+            index: number
+          ) => {
             return (
               <div key={index}>
                 <div>{item.total_number_of_products}</div>
@@ -27,9 +32,7 @@ export default async function Products() {
                 <div>{item.pending_orders}</div>
               </div>
             );
-          })
-        ) : (
-          <div>暫無商品</div>
+          }
         )}
       </div>
     </div>
