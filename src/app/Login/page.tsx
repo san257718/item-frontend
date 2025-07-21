@@ -30,7 +30,7 @@ export default function Login() {
 
     try {
       const response = await login("admin@ggg.com", "admin");
-      router.push("/dashboard");
+      router.push("/products");
       return response;
 
     } catch (error) {
