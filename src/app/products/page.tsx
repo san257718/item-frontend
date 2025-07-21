@@ -10,5 +10,14 @@ export default async function Products() {
   } catch (error) {
     console.log(error);
   }
-  return <div>123</div>;
+  return (
+    <div>
+      <div>
+        <div> {data[0].edited_today}</div>
+        <div>{data[0].active_users}</div>
+        <div>{data[0].pending_orders}</div>
+        <div>{data[0].total_number_of_products}</div>
+      </div>
+    </div>
+  );
 }
