@@ -15,9 +15,9 @@ export default async function Products() {
     <div>
       <div>
         {data.length > 0 ? (
-          data.map((item: any) => {
+          data.map((item: { total_number_of_products: number; edited_today: number; active_users: number; pending_orders: number; }, index: number) => {
             return (
-              <div key={item.id}>
+              <div key={index}>
                 <div>{item.total_number_of_products}</div>
                 <div>{item.edited_today}</div>
                 <div>{item.active_users}</div>
