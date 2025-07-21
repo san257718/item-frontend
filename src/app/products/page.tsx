@@ -1,27 +1,20 @@
-export const dynamic = "force-dynamic";
+// app/products/page.tsx
+export const dynamic = "force-dynamic"; // 強制渲染
 
 import { getDashboardData } from "../getDashboardData";
+export default async function ProductsPage() {
+   const data = await getDashboardData();
 
-export default async function getStaticProps() {
-  const data = await getDashboardData(); // 直接在元件中等待資料獲
-
-  if (!data || !data[0]) {
+  if(!data) {
     return <div>資料載入失敗</div>;
   }
 
-  const {
-    total_number_of_products,
-    edited_today,
-    active_users,
-    pending_orders,
-  } = data[0];
+  console.log(data);
 
   return (
     <div>
-      <div>{total_number_of_products}</div>
-      <div>{edited_today}</div>
-      <div>{active_users}</div>
-      <div>{pending_orders}</div>
+      <h1>商品資料</h1>
+      <div>{data[0].total_number_of_products}</div>
     </div>
   );
 }
