@@ -13,7 +13,7 @@ import StateHandling from "@/components/state-handling/page";
 import Footer from "@/components/footer/page";
 import Header from "@/components/header/page";
 
-export default async function Dashboard() {
+export default function Dashboard() {
   // let data;
   // try {
   //   const DashboardData = await getDashboardData();
