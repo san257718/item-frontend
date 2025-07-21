@@ -19,12 +19,13 @@ export async function getDashboardData() {
       console.warn("Server Component: No 'token' cookie found to forward.");
     }
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/total_number_of_products`, {
-      headers: {
-        "Content-Type": "application/json",
-        Cookie: `${requestHeaders["Cookie"]}`, // ✅ 重點
-      },
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/total_number_of_products`,
+      {
+        method: "GET",
+        credentials: "include", // ✅ 讓瀏覽器帶 cookie 自動附加
+      }
+    );
 
     // 若非 200，額外處理
     if (!res.ok) {
