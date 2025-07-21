@@ -15,21 +15,16 @@ export async function getDashboardData() {
         "從 Server Component 發送的請求頭中包含的 Cookie:",
         requestHeaders["Cookie"]
       );
-      console.log(requestHeaders["Cookie"]);
-      
     } else {
       console.warn("Server Component: No 'token' cookie found to forward.");
     }
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/total_number_of_products`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Cookie: `${requestHeaders["Cookie"]}`, // ✅ 重點
-        },
-      }
-    );
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/total_number_of_products`, {
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `${requestHeaders["Cookie"]}`, // ✅ 重點
+      },
+    });
 
     // 若非 200，額外處理
     if (!res.ok) {
