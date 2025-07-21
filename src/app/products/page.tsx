@@ -11,6 +11,9 @@ export default async function Products() {
     console.log(error);
   }
 
+
+  
+
   return (
     <div>
       <div>

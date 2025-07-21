@@ -22,15 +22,15 @@ export async function getDashboardData() {
     }
 
     const res = await fetch(
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:5000/api/total_number_of_products"
-        : process.env.NEXT_PUBLIC_API_URL + "/api/total_number_of_products",
+      process.env.NEXT_PUBLIC_API_URL + "/api/total_number_of_products",
       {
         method: "GET",
         cache: "no-store",
         headers: requestHeaders,
       }
     );
+
+    console.log(res);
 
     return await res.json();
   } catch (error) {
