@@ -20,7 +20,7 @@ export default async function Products() {
 
   return (
     <div>
-      <div>123</div>
+      <div>{data.total_number_of_products}</div>
     </div>
   );
 }
