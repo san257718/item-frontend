@@ -4,10 +4,13 @@ import { getDashboardData } from "../getDashboardData";
 
 export default async function getStaticProps() {
   const data = await getDashboardData(); // 直接在元件中等待資料獲
-  const total_number_of_products = data[0].total_number_of_products;
-  const edited_today = data[0].edited_today;
-  const active_users = data[0].active_users;
-  const pending_orders = data[0].pending_orders;
+
+    const {
+    total_number_of_products,
+    edited_today,
+    active_users,
+    pending_orders,
+  } = data[0];
 
   return (
     <div>
