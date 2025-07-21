@@ -17,7 +17,10 @@ export default async function Products() {
   return (
     <div>
       <div>
-        123
+        {data[0].total_number_of_products}
+        {data[0].edited_today}
+        {data[0].active_users}
+        {data[0].pending_orders}
       </div>
     </div>
   );
