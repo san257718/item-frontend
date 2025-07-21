@@ -12,7 +12,6 @@ import {
 import StateHandling from "@/components/state-handling/page";
 import Footer from "@/components/footer/page";
 import Header from "@/components/header/page";
-// import { getDashboardData } from "@/app/use_server/getDashboardData";
 
 export default async function Dashboard() {
   // let data;

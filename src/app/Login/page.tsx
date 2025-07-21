@@ -1,3 +1,5 @@
+'use client'
+
 import { login } from "@/api/dashboard";
 import { useRouter } from "next/navigation";
 
@@ -29,6 +31,7 @@ export default function Login() {
     try {
       const response = await login("admin@ggg.com", "admin");
       router.push("/dashboard");
+      return response;
 
     } catch (error) {
       console.log(error);
