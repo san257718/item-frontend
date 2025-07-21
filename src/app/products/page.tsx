@@ -5,7 +5,11 @@ import { getDashboardData } from "../getDashboardData";
 export default async function getStaticProps() {
   const data = await getDashboardData(); // 直接在元件中等待資料獲
 
-    const {
+  if (!data || !data[0]) {
+    return <div>資料載入失敗</div>;
+  }
+
+  const {
     total_number_of_products,
     edited_today,
     active_users,
