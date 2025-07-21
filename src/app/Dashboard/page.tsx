@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+
 
 import {
   CodeSandboxOutlined,
@@ -12,17 +12,10 @@ import {
 import StateHandling from "@/components/state-handling/page";
 import Footer from "@/components/footer/page";
 import Header from "@/components/header/page";
-import { getDashboardData } from "../use_server/getDashboardData";
+
 
 export default async function Dashboard() {
-  let data;
-  try {
-    const DashboardData = await getDashboardData();
-    data = DashboardData;
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
+
 
   
 
