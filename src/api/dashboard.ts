@@ -1,4 +1,4 @@
-import jsonApi from "../util/utilAxions";
+import jsonApi from "@/util/utilAxions";
 
 export const getDashboard = async () => {
   const response = await jsonApi.get("/api/total_number_of_products");
@@ -6,7 +6,7 @@ export const getDashboard = async () => {
 };
 
 export const login = async (email: string, password: string) => {
-  const response = await jsonApi.post('/api/login', {
+  const response = await jsonApi.post("/api/login", {
     email,
     password,
   });
@@ -15,6 +15,6 @@ export const login = async (email: string, password: string) => {
 };
 
 export const logout = async () => {
-  const response = await jsonApi.post('/api/logout');
+  const response = await jsonApi.post("/api/logout");
   return response.data;
 };

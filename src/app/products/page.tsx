@@ -1,7 +1,3 @@
 export default function Products() {
-  return (
-    <div>
-      333
-    </div>
-  )
+  <div>13</div>;
 }

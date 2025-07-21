@@ -1,4 +1,4 @@
-
+export const dynamic = "force-dynamic";
 
 import {
   CodeSandboxOutlined,
@@ -12,33 +12,11 @@ import {
 import StateHandling from "@/components/state-handling/page";
 import Footer from "@/components/footer/page";
 import Header from "@/components/header/page";
-
-import { getDashboard } from "@/api/dashboard";
-;
+import { getDashboardData } from "@/app/use_server/getDashboardData";
 
 export default async function Dashboard() {
-  const data = await getDashboard();
-  // const [data, setData] = useState([
-  //   {
-  //     total_number_of_products: 0,
-  //     edited_today: 0,
-  //     active_users: 0,
-  //     pending_orders: 0,
-  //   },
-  // ]);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const data = await getDashboard();
-  //       setData(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-  console.log(data);
-  
+  const data = await getDashboardData();
+
   const card = [
     {
       title: "總商品數",
