@@ -1,14 +1,11 @@
-"use client";
-
-
-import Link from "next/link";
+import { login } from "@/api/dashboard";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
-
+  const router = useRouter();
   // const [addOpen, setAddOpen] = useState<boolean>(false);
 
-
-  
+  // const setAuthenticated = useLayoutStore((state) => state.setAuthenticated);
 
   // const handleModalOpen = () => {
   //   setAddOpen(true);
@@ -18,31 +15,28 @@ export default function Login() {
   //   setAddOpen(false);
   // };
 
-  // const handleLogin = async () => {
-  //   // // 簡單的登入驗證
-  //   // if (username === 'admin@gmail.com' && password === 'admin123') {
-  //   //   // 設置登入狀態
-  //   //   localStorage.setItem('isAuthenticated', 'true');
-  //   //   // 跳轉到後台首頁
-  //   //   navigate('/admin/dashboard', { replace: true });
-  //   // } else {
-  //   //   setError('帳號或密碼錯誤');
-  //   // }
+  const handleLogin = async () => {
+    // // 簡單的登入驗證
+    // if (username === 'admin@gmail.com' && password === 'admin123') {
+    //   // 設置登入狀態
+    //   localStorage.setItem('isAuthenticated', 'true');
+    //   // 跳轉到後台首頁
+    //   navigate('/admin/dashboard', { replace: true });
+    // } else {
+    //   setError('帳號或密碼錯誤');
+    // }
 
-  //   try {
-  //     const response = await login("admin@ggg.com", "admin");
-  //     // localStorage.setItem("token", response.data.token);
-      
-  //     // setAuthenticated(true);
-  //     // router.push("/");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+    try {
+      const response = await login("admin@ggg.com", "admin");
+      router.push("/dashboard");
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="w-full min-h-full flex justify-center items-center">
-      
       <div className="max-w-md w-full flex justify-center bg-[#fffc] rounded-lg shadow-xl">
         <div className="w-full">
           <div className="flex flex-col text-center space-y-4 p-6">
@@ -88,9 +82,9 @@ export default function Login() {
               /> */}
             </div>
             <div className="flex space-x-2 gap-2">
-              <Link href="/dashboard" className="flex-1">
+              <button className="flex-1" onClick={handleLogin}>
                 登入
-              </Link>
+              </button>
               {/* <button className="flex-1" onClick={handleModalOpen}>
                 新增帳號
               </button> */}
