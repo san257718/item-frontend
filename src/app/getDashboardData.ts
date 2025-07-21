@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 
 export async function getDashboardData() {
   try {
-    const cookieStore = await cookies(); // 同步函式
+    const cookieStore: any = cookies(); // 同步函式
     const tokenCookie = cookieStore.get("token"); // 不需要 await
 
     const requestHeaders: HeadersInit = {
