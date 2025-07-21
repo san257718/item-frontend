@@ -24,6 +24,8 @@ export async function getDashboardData() {
       {
         method: "GET",
         credentials: "include", // ✅ 讓瀏覽器帶 cookie 自動附加
+        headers: requestHeaders,
+        cache: "no-store", // ⛔ 禁止 fetch cache（避免資料卡住）
       }
     );
 

@@ -1,7 +1,8 @@
 // utilAxios.tsx (Simplified for testing)
 import axios from "axios";
 
-export const jsonApi = axios.create({
+
+const jsonApi = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
