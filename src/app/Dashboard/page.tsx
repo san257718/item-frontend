@@ -15,7 +15,16 @@ import Header from "@/components/header/page";
 import { getDashboardData } from "@/app/use_server/getDashboardData";
 
 export default async function Dashboard() {
-  const data = await getDashboardData();
+  let data;
+  try {
+    const DashboardData = await getDashboardData();
+    data = DashboardData;
+  } catch (error) {
+    console.log(error);
+  }
+
+  console.log(process.env.NODE_ENV);
+  
 
   const card = [
     {

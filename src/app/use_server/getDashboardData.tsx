@@ -9,7 +9,6 @@ export async function getDashboardData() {
       "Content-Type": "application/json",
     };
 
-
     if (tokenCookie) {
       // 如果 token Cookie 存在，手動將其添加到請求頭的 'Cookie' 字段中
       // ⚠️ 注意：這裡不再需要 `credentials: "include"`，因為我們手動設置了 `Cookie` 頭
@@ -23,7 +22,9 @@ export async function getDashboardData() {
     }
 
     const res = await fetch(
-      "http://localhost:5000/api/total_number_of_products",
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:5000/api/total_number_of_products"
+        : process.env.NEXT_PUBLIC_API_URL + "/api/total_number_of_products",
       {
         method: "GET",
         cache: "no-store",
