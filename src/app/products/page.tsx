@@ -9,6 +9,13 @@ export default async function Products() {
     console.log(data);
   } catch (error) {
     console.log(error);
+
+    return {
+      total_number_of_products: "-",
+      edited_today: "-",
+      active_users: "-",
+      pending_orders: "-",
+    };
   }
 
   return (
