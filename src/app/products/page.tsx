@@ -14,26 +14,10 @@ export default async function Products() {
   return (
     <div>
       <div>
-        {data.map(
-          (
-            item: {
-              total_number_of_products: number;
-              edited_today: number;
-              active_users: number;
-              pending_orders: number;
-            },
-            index: number
-          ) => {
-            return (
-              <div key={index}>
-                <div>{item.total_number_of_products}</div>
-                <div>{item.edited_today}</div>
-                <div>{item.active_users}</div>
-                <div>{item.pending_orders}</div>
-              </div>
-            );
-          }
-        )}
+        {data[0].total_number_of_products}
+        {data[0].edited_today}
+        {data[0].active_users}
+        {data[0].pending_orders}
       </div>
     </div>
   );
