@@ -6,10 +6,10 @@ export default async function ProductsPage() {
    const data = await getDashboardData();
 
   if(!data) {
+    console.log(data);
     return <div>資料載入失敗</div>;
   }
 
-  console.log(data);
 
   return (
     <div>
