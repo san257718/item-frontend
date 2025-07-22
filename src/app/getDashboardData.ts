@@ -1,43 +1,27 @@
 import { cookies } from "next/headers";
 
-
-export async function getDashboardData(tokenToSet?: string) {
+export async function getDashboardData() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+  const requestHeaders: HeadersInit = {
+    "Content-Type": "application/json",
+    Cookie: `token=${token}`,
+  };
   try {
-    const cookieStore = await cookies();
-    
-    // 如果有傳入 token 要設置
-    if (tokenToSet) {
-      cookieStore.set('token', tokenToSet, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
-        path: '/',
-        maxAge: 60 * 60 * 24 * 7 // 1 week
-      });
-    }
-
-    const tokenCookie = cookieStore.get("token");
-    const requestHeaders: HeadersInit = { "Content-Type": "application/json" };
-
-    if (tokenCookie) {
-      requestHeaders["Cookie"] = `${tokenCookie.name}=${tokenCookie.value}`;
-    }
-
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/total_number_of_products`,
       {
         method: "GET",
-        credentials: "include",
         headers: requestHeaders,
-        cache: "no-store",
+        credentials: "include", // ✅ 讓瀏覽器帶 cookie 自動附加
+        cache: "no-store", // ⛔ 禁止 fetch cache（避免資料卡住）
       }
     );
 
-    if (!res.ok) throw new Error(`API response status: ${res.status}`);
-
+    if (!res.ok) throw new Error("Request failed");
     return await res.json();
   } catch (error) {
-    console.error("❌ dashboard error:", error);
-    return [];
+    console.error("Fetch error:", error);
+    return null;
   }
 }
