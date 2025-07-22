@@ -12,7 +12,6 @@ export async function getDashboardData() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Cookie: `token=${token}`,
         },
         credentials: "include",
         cache: "no-store",

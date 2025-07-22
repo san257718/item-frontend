@@ -1,7 +1,10 @@
-'use client'
+"use client";
+import '@ant-design/v5-patch-for-react-19';
 
 import { login } from "@/api/dashboard";
+import Button from "antd/es/button";
 import { useRouter } from "next/navigation";
+
 export default function Login() {
   const router = useRouter();
   // const [addOpen, setAddOpen] = useState<boolean>(false);
@@ -29,9 +32,9 @@ export default function Login() {
 
     try {
       const response = await login("admin@ggg.com", "admin");
-      router.push("/products");
+      localStorage.setItem("token", response.data.token);
+      router.push("/dashboard");
       return response;
-
     } catch (error) {
       console.log(error);
     }
@@ -83,10 +86,10 @@ export default function Login() {
                 error={!!error}
               /> */}
             </div>
-            <div className="flex space-x-2 gap-2">
-              <button className="flex-1" onClick={handleLogin}>
+            <div className="flex justify-center">
+              <Button className="w-40"type="primary" onClick={handleLogin}>
                 登入
-              </button>
+              </Button>
               {/* <button className="flex-1" onClick={handleModalOpen}>
                 新增帳號
               </button> */}

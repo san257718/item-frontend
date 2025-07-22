@@ -1,5 +1,3 @@
-
-
 import {
   CodeSandboxOutlined,
   ExclamationCircleOutlined,
@@ -12,12 +10,37 @@ import {
 import StateHandling from "@/components/state-handling/page";
 import Footer from "@/components/footer/page";
 import Header from "@/components/header/page";
+import { getDashboard } from "@/api/dashboard";
+import { cookies } from "next/headers";
 
+async function getDashboardData() {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("token");
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/total_number_of_products`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: `${token?.name}=${token?.value}`,
+        },
+        credentials: "include",
+        cache: "no-store",
+      }
+    );
+    console.log(res);
+    return await res.json();
+  } catch (error) {
+    console.error("Fetch error:", error);
+    throw error; // 重新拋出錯誤以便上層處理
+  }
+}
 
 export default async function Dashboard() {
-
-
-  
+  const data = await getDashboardData();
+  console.log(data);
 
   const card = [
     {
@@ -25,22 +48,22 @@ export default async function Dashboard() {
       icon: (
         <CodeSandboxOutlined style={{ fontSize: "28px", color: "white" }} />
       ),
-      // value: data[0].total_number_of_products,
+      value: data[0].total_number_of_products,
     },
     {
       title: "今日編輯數", // Assuming this corresponds to edited_today
       icon: <FileTextOutlined style={{ fontSize: "28px", color: "white" }} />,
-      // value: data[0].edited_today,
+      value: data[0].edited_today,
     },
     {
       title: "活躍用戶",
       icon: <UserOutlined style={{ fontSize: "28px", color: "white" }} />,
-      // value: data[0].active_users,
+      value: data[0].active_users,
     },
     {
       title: "待處理訂單",
       icon: <ShoppingOutlined style={{ fontSize: "28px", color: "white" }} />,
-      // value: data[0].pending_orders,
+      value: data[0].pending_orders,
     },
   ];
 
@@ -131,7 +154,7 @@ export default async function Dashboard() {
                     <div>
                       {item.title}
                       <div className="text-2xl font-bold mt-2">
-                        {/* {item.value !== 0 ? item.value : "-"} */}
+                        {item.value !== 0 ? item.value : "-"}
                       </div>
                     </div>
                     <div className="bg-[#031e49] flex items-center justify-center h-12 w-12 rounded-xl">

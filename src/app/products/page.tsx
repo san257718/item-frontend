@@ -1,13 +1,25 @@
 // app/products/page.tsx
-export const dynamic = "force-dynamic"; // 強制渲染
+"use client";
+import { getDashboard } from "@/api/dashboard";
+import { useEffect, useState } from "react";
 
-import { getDashboardData } from "../getDashboardData";
-export default async function ProductsPage() {
-  const data = await getDashboardData();
+export default function ProductsPage() {
+  // const data = await getDashboard();
+  const [data, setData] = useState([{
+    total_number_of_products: 0,
+    edited_today: 0,
+    active_users: 0,
+    pending_orders: 0,
+  }]);
 
-  if (!data) {
-    return <div>資料載入失敗</div>;
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getDashboard();
+      setData(data);
+      console.log(data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>

@@ -31,12 +31,12 @@ export default function Header() {
 
   return (
     <div className="h-full sm:px-6 bg-white">
-      <div className="flex justify-between items-center p-3 space-x-3">
-        <div className="flex items-center space-x-2">
+      <div className="flex justify-betwee items-center p-3 space-x-3">
+        <div className="flex items-center nspace-x-2">
           <div className="h-8 w-8 bg-[#031e49] rounded-lg flex items-center justify-center">
             <CodeSandboxOutlined style={{ fontSize: "28px", color: "white" }} />
           </div>
-          <h1 className="bg-linear-to-r bg-clip-text from-[#031e49] to-[#3c83f6] font-extrabold text-transparent text-xl">
+          <h1 className="bg-linear-to-r bg-clip-text from-[#031e49] to-[#3c83f6] font-extrabold text-transparent text-xl mr-2">
             庫存管理
           </h1>
 
@@ -56,8 +56,8 @@ export default function Header() {
                   <button
                     className={
                       isActive || isHovered
-                        ? "bg-linear-to-r from-[#031e49] to-[#06327a] px-4 py-2 rounded-xl flex items-center h- mb-2 "
-                        : "px-4 py-2 flex items-center h- mb-2"
+                        ? "bg-linear-to-r from-[#031e49] to-[#06327a] px-4 py-2 rounded-xl flex items-center "
+                        : "px-4 py-2 flex items-center"
                     }
                   >
                     <div className="text-sm  gap-2 flex justify-center items-center cursor-pointer">

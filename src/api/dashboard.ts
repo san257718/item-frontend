@@ -1,13 +1,17 @@
-import serverAxios from "@/app/lib/serverAxios";
-import clientAxios from "@/app/lib/clientAxios";
+import utilAxios from "@/app/lib/utilAxios";
+
+export const getUsers = async () => {
+  const response = await utilAxios.get("/api/");
+  return response.data;
+};
 
 export const getDashboard = async () => {
-  const response = await serverAxios.get("/api/total_number_of_products");
+  const response = await utilAxios.get("/api/total_number_of_products");
   return response.data;
 };
 
 export const login = async (email: string, password: string) => {
-  const response = await clientAxios.post("/api/login", {
+  const response = await utilAxios.post("/api/login", {
     email,
     password,
   });
@@ -16,6 +20,6 @@ export const login = async (email: string, password: string) => {
 };
 
 export const logout = async () => {
-  const response = await serverAxios.post("/api/logout");
+  const response = await utilAxios.post("/api/logout");
   return response.data;
 };
