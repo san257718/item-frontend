@@ -3,13 +3,11 @@ export const dynamic = "force-dynamic"; // 強制渲染
 
 import { getDashboardData } from "../getDashboardData";
 export default async function ProductsPage() {
-   const data = await getDashboardData();
+  const data = await getDashboardData();
 
-  if(!data) {
-    console.log(data);
+  if (!data) {
     return <div>資料載入失敗</div>;
   }
-
 
   return (
     <div>

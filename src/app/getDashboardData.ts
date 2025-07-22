@@ -1,27 +1,29 @@
 import { cookies } from "next/headers";
 
 export async function getDashboardData() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
-  const requestHeaders: HeadersInit = {
-    "Content-Type": "application/json",
-    Cookie: `token=${token}`,
-  };
   try {
+    // 獲取服務器端 cookie
+    const cookieStore = await cookies();
+    const token = cookieStore.get("token")?.value;
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/total_number_of_products`,
       {
         method: "GET",
-        headers: requestHeaders,
-        credentials: "include", // ✅ 讓瀏覽器帶 cookie 自動附加
-        cache: "no-store", // ⛔ 禁止 fetch cache（避免資料卡住）
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: `token=${token}`,
+        },
+        credentials: "include",
+        cache: "no-store",
       }
     );
 
-    if (!res.ok) throw new Error("Request failed");
+    console.log(token);
+
     return await res.json();
   } catch (error) {
     console.error("Fetch error:", error);
-    return null;
+    throw error; // 重新拋出錯誤以便上層處理
   }
 }
