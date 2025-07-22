@@ -1,12 +1,13 @@
-import jsonApi from "@/app/util/utilAxions";
+import serverAxios from "@/app/lib/serverAxios";
+import clientAxios from "@/app/lib/clientAxios";
 
 export const getDashboard = async () => {
-  const response = await jsonApi.get("/api/total_number_of_products");
+  const response = await serverAxios.get("/api/total_number_of_products");
   return response.data;
 };
 
 export const login = async (email: string, password: string) => {
-  const response = await jsonApi.post("/api/login", {
+  const response = await clientAxios.post("/api/login", {
     email,
     password,
   });
@@ -15,6 +16,6 @@ export const login = async (email: string, password: string) => {
 };
 
 export const logout = async () => {
-  const response = await jsonApi.post("/api/logout");
+  const response = await serverAxios.post("/api/logout");
   return response.data;
 };
