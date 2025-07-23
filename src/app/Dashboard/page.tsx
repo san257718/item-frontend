@@ -10,7 +10,6 @@ import {
 import StateHandling from "@/components/state-handling/page";
 import Footer from "@/components/footer/page";
 import Header from "@/components/header/page";
-import { getDashboard } from "@/api/dashboard";
 import { cookies } from "next/headers";
 
 async function getDashboardData() {
@@ -39,8 +38,27 @@ async function getDashboardData() {
 }
 
 export default async function Dashboard() {
-  const data = await getDashboardData();
+  let data;
+  try {
+    const DashboardData = await getDashboardData();
+    data = DashboardData;
+  } catch (error) {
+    console.error("Fetch error:", error);
+
+    const DashboardData = [
+      {
+        total_number_of_products: 0,
+        edited_today: 0,
+        active_users: 0,
+        pending_orders: 0,
+      },
+    ];
+    data = DashboardData;
+  }
+
   console.log(data);
+  console.log(data[0].total_number_of_products);
+  
 
   const card = [
     {
