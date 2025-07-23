@@ -15,18 +15,17 @@ import { cookies } from "next/headers";
 async function getDashboardData() {
   try {
     const cookieStore = await cookies();
+
     const token = cookieStore.get("token");
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/total_number_of_products`,
       {
-        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Cookie: `${token?.name}=${token?.value}`,
         },
         credentials: "include",
-        cache: "no-store",
       }
     );
     console.log(res);
@@ -58,7 +57,6 @@ export default async function Dashboard() {
 
   console.log(data);
   console.log(data[0].total_number_of_products);
-  
 
   const card = [
     {
