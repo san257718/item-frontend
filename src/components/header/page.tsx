@@ -31,7 +31,7 @@ export default function Header() {
 
   return (
     <div className="h-full sm:px-6 bg-white">
-      <div className="flex justify-betwee items-center p-3 space-x-3">
+      <div className="flex justify-between items-center p-3 space-x-3">
         <div className="flex items-center nspace-x-2">
           <div className="h-8 w-8 bg-[#031e49] rounded-lg flex items-center justify-center">
             <CodeSandboxOutlined style={{ fontSize: "28px", color: "white" }} />
@@ -40,7 +40,7 @@ export default function Header() {
             庫存管理
           </h1>
 
-          <nav className="flex items-center space-x-1">
+          <nav className="flex items-center space-x-1 @sm-[360px]:hidden">
             {headerList.map((item) => {
               const isHovered = hoverPath === item.url;
               const isActive = item.children?.some(

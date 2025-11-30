@@ -1,5 +1,5 @@
 "use client";
-import '@ant-design/v5-patch-for-react-19';
+import "@ant-design/v5-patch-for-react-19";
 
 import { login } from "@/api/dashboard";
 import Button from "antd/es/button";
@@ -20,16 +20,6 @@ export default function Login() {
   // };
 
   const handleLogin = async () => {
-    // // 簡單的登入驗證
-    // if (username === 'admin@gmail.com' && password === 'admin123') {
-    //   // 設置登入狀態
-    //   localStorage.setItem('isAuthenticated', 'true');
-    //   // 跳轉到後台首頁
-    //   navigate('/admin/dashboard', { replace: true });
-    // } else {
-    //   setError('帳號或密碼錯誤');
-    // }
-
     try {
       const response = await login("admin@ggg.com", "admin");
       localStorage.setItem("token", response.data.token);
@@ -87,7 +77,7 @@ export default function Login() {
               /> */}
             </div>
             <div className="flex justify-center">
-              <Button className="w-40"type="primary" onClick={handleLogin}>
+              <Button className="w-40" type="primary" onClick={handleLogin}>
                 登入
               </Button>
               {/* <button className="flex-1" onClick={handleModalOpen}>
