@@ -10,7 +10,12 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript", "prettier", 'eslintrc.json'),
+  ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off", // 搬過來的規則
+    },
+  },
 ];
 
 export default eslintConfig;
