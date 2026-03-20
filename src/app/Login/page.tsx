@@ -4,24 +4,26 @@ import "@ant-design/v5-patch-for-react-19";
 import { login } from "@/api/dashboard";
 import Button from "antd/es/button";
 import { useRouter } from "next/navigation";
-
+import { Input } from "antd";
+import { useState } from "react";
 export default function Login() {
   const router = useRouter();
-  // const [addOpen, setAddOpen] = useState<boolean>(false);
+  const [userName, setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-  // const setAuthenticated = useLayoutStore((state) => state.setAuthenticated);
+  const userNameLogin = ($event: any) => {
+    const userName = $event.target.value;
+    setUserName(userName);
+  };
 
-  // const handleModalOpen = () => {
-  //   setAddOpen(true);
-  // };
+  const userPasswordLogin = ($event: any) => {
+    const password = $event.target.value;
+    setPassword(password);
+  };
 
-  // const headleModalClose = () => {
-  //   setAddOpen(false);
-  // };
-
-  const handleLogin = async () => {
+  const handleLogin = async (userName: string, password: string) => {
     try {
-      const response = await login("admin@ggg.com", "admin");
+      const response = await login(userName, password);
       localStorage.setItem("token", response.data.token);
       router.push("/dashboard");
       return response;
@@ -47,54 +49,32 @@ export default function Login() {
           </div>
           <div className="flex flex-col space-y-4 p-6 pt-0">
             <div className="w-full flex justify-center items-center">
-              {/* <TextField
-                id="email"
-                label="email"
-                variant="outlined"
-                size="small"
-                sx={{ width: '45ch' }}
-                slotProps={{
-                  input: {
-                    startAdornment: <PersonIcon color="action" />,
-                  },
-                }}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                error={!!error}
-              /> */}
+              <Input
+                placeholder="userName"
+                className="w-24"
+                onChange={userNameLogin}
+              />
             </div>
             <div className="w-full flex justify-center">
-              {/* <TextField
-                id="password"
-                label="password"
-                type="password"
-                variant="outlined"
-                size="small"
-                sx={{ width: '45ch' }}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                error={!!error}
-              /> */}
+              <Input.Password
+                placeholder="password"
+                className="w-24"
+                onChange={userPasswordLogin}
+              />
             </div>
             <div className="flex justify-center">
-              <Button className="w-40" type="primary" onClick={handleLogin}>
-                登入
-              </Button>
-              {/* <button className="flex-1" onClick={handleModalOpen}>
-                新增帳號
-              </button> */}
-              {/* <Link
-                className="flex-1"
-                href={"/dashboard"}
-                onChange={handleLogin}
+              <Button
+                className="w-40"
+                type="primary"
+                onClick={() => handleLogin(userName, password)}
               >
                 登入
-              </Link> */}
+              </Button>
             </div>
 
             <div className="mt-6 p-4 bg-blue-50 rounded-lg">
               <h4>測試帳號</h4>
-              <p>帳號: admin@gmail.com</p>
+              <p>帳號: admin123@ggg.com</p>
               <p>密碼: admin123</p>
             </div>
           </div>
