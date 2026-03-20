@@ -25,7 +25,7 @@ export default function Login() {
     try {
       const response = await login(userName, password);
       localStorage.setItem("token", response.data.token);
-      router.push("/dashboard");
+      router.push("/Dashboard");
       return response;
     } catch (error) {
       console.log(error);
