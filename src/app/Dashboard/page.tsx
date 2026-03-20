@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import {
   CodeSandboxOutlined,
   ExclamationCircleOutlined,
@@ -11,6 +12,7 @@ import StateHandling from "@/components/state-handling/page";
 import Footer from "@/components/footer/page";
 import Header from "@/components/header/page";
 import { cookies } from "next/headers";
+
 
 async function getDashboardData() {
   try {

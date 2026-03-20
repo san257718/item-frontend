@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-
+export const dynamic = "force-dynamic";
 export async function getDashboardData() {
   try {
     // 獲取服務器端 cookie
